@@ -9,6 +9,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Text;
 #endregion
 namespace timewebserverapp.Controllers
 {
@@ -33,7 +34,7 @@ namespace timewebserverapp.Controllers
             string JsonList = JsonConvert.SerializeObject(advisers);
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(JsonList, Encoding.UTF8, "application/json");
-            return Request.CreateResponse<response>(HttpStatusCode.OK, advisers);
+            return response;
         }
 
         // GET api/values/5
