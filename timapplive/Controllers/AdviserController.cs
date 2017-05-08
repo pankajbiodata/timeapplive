@@ -30,7 +30,10 @@ namespace timewebserverapp.Controllers
                     advisers.Add(new DataEntities.Models.tblAdviser() { AdviserID = adviser.AdviserID, FacultyID = adviser.FacultyID, SectionID = adviser.SectionID, SchoolID = adviser.SchoolID });
                 }
             }
-            return Request.CreateResponse<List<tblAdviser>>(HttpStatusCode.OK, advisers);
+            string JsonList = JsonConvert.SerializeObject(advisers);
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(JsonList, Encoding.UTF8, "application/json");
+            return Request.CreateResponse<response>(HttpStatusCode.OK, advisers);
         }
 
         // GET api/values/5
